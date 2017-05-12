@@ -56,7 +56,7 @@ RSpec.describe Subject, type: :model do
   end
 
   it 'should contain subject' do
-    subj = Subject.create(name: 'PmP' , mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items:{test: 'test'})
+    subj = create(:subject)
     reading_type = ReadingType.create(name: 'type name' )
     reading = Reading.create(reading_type_id: reading_type.id , header: '1.0', body: '1.0', subject_id: subj.id)
     expect(subj.readings.first.id == reading.id).to be_truthy
