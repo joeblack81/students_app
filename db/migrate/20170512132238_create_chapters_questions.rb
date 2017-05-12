@@ -1,4 +1,4 @@
-class CreateChaptersQuestions < ActiveRecord::Migration[5.1]
+class CreateChaptersQuestions < ActiveRecord::Migration[5.0]
   def up
     create_table :chapters_questions do |t|
       t.integer :chapter_id

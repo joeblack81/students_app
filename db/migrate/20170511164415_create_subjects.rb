@@ -1,4 +1,4 @@
-class CreateSubjects < ActiveRecord::Migration[5.1]
+class CreateSubjects < ActiveRecord::Migration[5.0]
   def up
     create_table :subjects do |t|
       t.string :name

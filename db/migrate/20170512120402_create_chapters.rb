@@ -1,4 +1,4 @@
-class CreateChapters < ActiveRecord::Migration[5.1]
+class CreateChapters < ActiveRecord::Migration[5.0]
   def up
     create_table :chapters do |t|
       t.integer :subject_id

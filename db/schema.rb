@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20170512150202) do
   enable_extension "plpgsql"
 
   create_table "chapters", force: :cascade do |t|
-    t.integer "subject_id"
-    t.integer "weight"
-    t.string "name"
-    t.string "icon"
+    t.integer  "subject_id"
+    t.integer  "weight"
+    t.string   "name"
+    t.string   "icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,44 +31,44 @@ ActiveRecord::Schema.define(version: 20170512150202) do
   end
 
   create_table "question_types", force: :cascade do |t|
-    t.string "name"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.text "header"
-    t.json "possible_answers"
-    t.json "correct_answer"
-    t.json "explanation"
-    t.integer "question_type_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "header"
+    t.json     "possible_answers"
+    t.json     "correct_answer"
+    t.json     "explanation"
+    t.integer  "question_type_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "reading_types", force: :cascade do |t|
-    t.string "name"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "readings", force: :cascade do |t|
-    t.integer "reading_type_id"
-    t.string "header"
-    t.text "body"
-    t.integer "subject_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "reading_type_id"
+    t.string   "header"
+    t.text     "body"
+    t.integer  "subject_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.string "name"
-    t.string "token"
-    t.string "mobile_version"
-    t.string "backend_version"
-    t.json "menu_items"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "token"
+    t.string   "mobile_version"
+    t.string   "backend_version"
+    t.json     "menu_items"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

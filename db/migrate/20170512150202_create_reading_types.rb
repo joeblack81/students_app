@@ -1,4 +1,4 @@
-class CreateReadingTypes < ActiveRecord::Migration[5.1]
+class CreateReadingTypes < ActiveRecord::Migration[5.0]
   def up
     create_table :reading_types do |t|
       t.string :name
