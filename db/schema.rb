@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512153228) do
+ActiveRecord::Schema.define(version: 20170512155252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chapters", force: :cascade do |t|
+  create_table "chapters", id: :bigserial, force: :cascade do |t|
     t.integer  "subject_id"
     t.integer  "weight"
     t.string   "name"
@@ -24,19 +24,19 @@ ActiveRecord::Schema.define(version: 20170512153228) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "chapters_questions", force: :cascade do |t|
+  create_table "chapters_questions", id: :bigserial, force: :cascade do |t|
     t.integer "chapter_id"
     t.integer "question_id"
     t.integer "weight"
   end
 
-  create_table "question_types", force: :cascade do |t|
+  create_table "question_types", id: :bigserial, force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "questions", force: :cascade do |t|
+  create_table "questions", id: :bigserial, force: :cascade do |t|
     t.text     "header"
     t.json     "possible_answers"
     t.json     "correct_answer"
@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(version: 20170512153228) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "reading_types", force: :cascade do |t|
+  create_table "reading_types", id: :bigserial, force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "readings", force: :cascade do |t|
+  create_table "readings", id: :bigserial, force: :cascade do |t|
     t.integer  "reading_type_id"
     t.string   "header"
     t.text     "body"
@@ -61,7 +61,14 @@ ActiveRecord::Schema.define(version: 20170512153228) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "subjects", force: :cascade do |t|
+  create_table "students", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subjects", id: :bigserial, force: :cascade do |t|
     t.string   "name"
     t.string   "token"
     t.string   "mobile_version"
