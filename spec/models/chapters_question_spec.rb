@@ -30,7 +30,7 @@ RSpec.describe ChaptersQuestion, type: :model do
 
   it 'should  create new chapters_question with all attributes ' do
     question_type = QuestionType.create(name: "question name")
-    subj = Subject.create(name: 'PmP' , mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items:{test: 'test'})
+    subj = create(:subject)
     question = Question.create(header: "test" , possible_answers: {test: "test"}, correct_answer: {test: "test"}, explanation: {test: "test"},question_type_id: question_type.id )
     chapter =Chapter.create(subject_id: subj.id , weight: 1, name: 'knowledge area', icon: 'xxxx')
     x =ChaptersQuestion.new(chapter_id: chapter.id , question_id: question.id, weight: 1)
@@ -38,7 +38,7 @@ RSpec.describe ChaptersQuestion, type: :model do
   end
 
   it 'should contain chapter' do
-    subj = Subject.create(name: 'PmP' , mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items:{test: 'test'})
+    subj = create(:subject)
     question_type = QuestionType.create(name: "question name")
     question = Question.create(header: "test" , possible_answers: {test: "test"}, correct_answer: {test: "test"}, explanation: {test: "test"},question_type_id: question_type.id )
     chapter = Chapter.create(subject_id: subj.id , weight: 1, name: 'knowledge area', icon: 'xxxx')

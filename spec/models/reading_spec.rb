@@ -22,7 +22,7 @@ RSpec.describe Reading, type: :model do
   end
 
   it 'should not create new reading without reading_type_id' do
-    subj = Subject.create(name: 'PmP' , mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items:{test: 'test'})
+    subj = create(:subject)
     x =Reading.new(reading_type_id: nil , header: '1.0', body: '1.0', subject_id: subj.id)
     expect(x.save).to be_falsey
   end
@@ -34,7 +34,7 @@ RSpec.describe Reading, type: :model do
   end
 
   it 'should  create new reading without missing data' do
-    subj = Subject.create(name: 'PmP' , mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items:{test: 'test'})
+    subj = create(:subject)
     reading_type = ReadingType.create(name: 'type name' )
     x =Reading.new(reading_type_id: reading_type.id , header: '1.0', body: '1.0', subject_id: subj.id)
     expect(x.save!).to be_truthy
@@ -42,7 +42,7 @@ RSpec.describe Reading, type: :model do
 
 
   it 'should contain subject' do
-    subj = Subject.create(name: 'PmP' , mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items:{test: 'test'})
+    subj = create(:subject)
     reading_type = ReadingType.create(name: 'type name' )
     reading = Reading.create(reading_type_id: reading_type.id , header: '1.0', body: '1.0', subject_id: subj.id)
     expect(reading.subject.id == subj.id).to be_truthy
@@ -50,7 +50,7 @@ RSpec.describe Reading, type: :model do
   end
 
   it 'should contain reading_type' do
-    subj = Subject.create(name: 'PmP' , mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items:{test: 'test'})
+    subj = create(:subject)
     reading_type = ReadingType.create(name: 'type name' )
     reading = Reading.create(reading_type_id: reading_type.id , header: '1.0', body: '1.0', subject_id: subj.id)
     expect(reading.subject.id == subj.id).to be_truthy

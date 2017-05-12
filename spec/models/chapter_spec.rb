@@ -37,19 +37,19 @@ RSpec.describe Chapter, type: :model do
   end
 
   it 'should  create new chapter with all attributes' do
-    subj = Subject.create(name: 'PmP', mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items: {test: 'test'})
+    subj = create(:subject)
     x =Chapter.new(subject_id: subj.id, weight: 1, name: 'knowledge area', icon: 'xxxx')
     expect(x.save).to be_truthy
   end
 
   it 'should contain subject' do
-    subj = Subject.create(name: 'PmP', mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items: {test: 'test'})
+    subj = create(:subject)
     chapter = Chapter.create(subject_id: subj.id, weight: 1, name: 'knowledge area', icon: 'xxxx')
     expect(subj.chapters.first.id == chapter.id).to be_truthy
   end
 
   it 'should be sorted' do
-    subj = Subject.create(name: 'PmP', mobile_version: '1.0', backend_version: '1.0', token: 'xxx', menu_items: {test: 'test'})
+    subj = create(:subject)
     Chapter.create!([{subject_id: subj.id, weight: 1, name: 'knowledge area', icon: 'xxxx'},
                      {subject_id: subj.id, weight: 3, name: 'knowledge area', icon: 'xxxx'},
                      {subject_id: subj.id, weight: 2, name: 'knowledge area', icon: 'xxxx'}])
