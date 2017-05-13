@@ -5,5 +5,6 @@ class Question < ApplicationRecord
   has_many :chapters_questions
   has_many :exams_questions
   belongs_to :question_type
+  has_many :bookmarks, as: :bookmarkable
 
 end
