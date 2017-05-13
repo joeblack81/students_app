@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :students
+  has_many :devices_infos
 end
