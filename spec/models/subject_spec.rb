@@ -60,8 +60,7 @@ RSpec.describe Subject, type: :model do
 
   it 'should contain subject' do
     subj = create(:subject)
-    reading_type = ReadingType.create(name: 'type name')
-    reading = Reading.create(reading_type_id: reading_type.id, header: '1.0', body: '1.0', subject_id: subj.id)
+    reading = create(:reading, subject: subj)
     expect(subj.readings.first.id == reading.id).to be_truthy
   end
 
