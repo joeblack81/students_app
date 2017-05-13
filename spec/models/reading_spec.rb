@@ -22,22 +22,25 @@ RSpec.describe Reading, type: :model do
   end
 
   it 'should not create new reading without reading_type_id' do
-    subj = create(:subject)
+    subj = create(:subject, id:nil)
+    #x =  create(:reading, reading_type: nil, subject: subj)
     x =Reading.new(reading_type_id: nil , header: '1.0', body: '1.0', subject_id: subj.id)
     expect(x.save).to be_falsey
   end
 
   it 'should not create new reading without subject_id' do
-
-    x =Reading.new(reading_type_id: 1 , header: '1.0', body: '1.0', subject_id: nil)
-    expect(x.save).to be_falsey
+    subj = create(:subject)
+    reading_type = create(:reading_type)
+    reading = create(:reading , subject: subj, reading_type: reading_type )
+    #x =Reading.new(reading_type_id: 1 , header: '1.0', body: '1.0', subject_id: nil)
+    expect(reading.save).to be_falsey
   end
 
   it 'should  create new reading without missing data' do
     subj = create(:subject)
-    reading_type = ReadingType.create(name: 'type name' )
-    x =Reading.new(reading_type_id: reading_type.id , header: '1.0', body: '1.0', subject_id: subj.id)
-    expect(x.save!).to be_truthy
+    reading_type = create(:reading_type)
+    reading = create(:reading , subject: subj, reading_type: reading_type )
+    expect(reading.save!).to be_truthy
   end
 
 
