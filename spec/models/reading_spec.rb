@@ -22,9 +22,7 @@ RSpec.describe Reading, type: :model do
   end
 
   it 'should not create new reading without reading_type_id' do
-    subj = create(:subject, id:nil)
-    #x =  create(:reading, reading_type: nil, subject: subj)
-    x =Reading.new(reading_type_id: nil , header: '1.0', body: '1.0', subject_id: subj.id)
+    x =  build(:reading, subject: nil)
     expect(x.save).to be_falsey
   end
 
