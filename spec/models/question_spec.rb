@@ -26,15 +26,14 @@ RSpec.describe Question, type: :model do
   end
 
   it 'should not create new question without question_type_id' do
-    x =Question.new(header: "test" , possible_answers: {test: "test"}, correct_answer: {test: "test"}, explanation: {test: "test"},question_type_id: nil )
-    expect(x.save).to be_falsey
+    question = build(:question, question_type:nil )
+    expect(question.save).to be_falsey
   end
 
   it 'should create new question with all attributes' do
 
-    question_type = QuestionType.create(name: "question name")
-    x =Question.new(header: "test" , possible_answers: {test: "test"}, correct_answer: {test: "test"}, explanation: {test: "test"},question_type_id: question_type.id )
-    expect(x.save).to be_truthy
+    question = build(:question )
+    expect(question.save).to be_truthy
 
   end
 

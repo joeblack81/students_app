@@ -19,14 +19,14 @@ RSpec.describe Bookmark, type: :model do
   end
 
   it 'should not create new bookmark without student_id' do
-    x =Bookmark.new(bookmarkable_id: 1 , bookmarkable_type: 1, student_id: nil)
-    expect(x.save).to be_falsey
+    bookmark = build(:bookmark, student: nil)
+    expect(bookmark.save).to be_falsey
   end
 
   it 'should contain student' do
-    user = User.create(email:'joe@joe.com', password:'12345678')
-    student = Student.create(name: 'mohamed' , user_id: user.id)
-    bookmark =Bookmark.create(bookmarkable_id: 1 , bookmarkable_type: 1, student_id: student.id)
+    user = create(:user)
+    student = create(:student, user: user)
+    bookmark = create(:bookmark, student: student)
     expect(bookmark.student.id == student.id).to be_truthy
 
   end

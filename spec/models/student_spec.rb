@@ -14,18 +14,20 @@ RSpec.describe Student, type: :model do
   end
 
   it 'should not create student without name' do
-   x = Student.new(name: nil , user_id: 1)
-   expect(x.save).to be_falsey
+   student = build(:student, name:nil)
+   expect(student.save).to be_falsey
   end
 
   it 'should not create student without name' do
-    x = Student.new(name: 'mohamed' , user_id: nil)
-    expect(x.save).to be_falsey
+    student = build(:student, user:nil)
+    expect(student.save).to be_falsey
   end
 
   it 'should contain user' do
-    user = User.create(email:'joe@joe.com', password:'12345678')
-    x = Student.new(name: 'mohamed' , user_id: user.id)
+    user = create(:user, email:'mohamed@gmail.com')
+    student = create(:student , user: user)
+    expect(student.user.id == user.id).to be_truthy
+
 
   end
 

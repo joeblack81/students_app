@@ -15,13 +15,13 @@ RSpec.describe DevicesInfo, type: :model do
   end
 
   it 'should not create new device_info without user_id' do
-    x =DevicesInfo.new(udid: "xxxx" , user_id: nil)
-    expect(x.save).to be_falsey
+    device_info = build(:devices_info, user: nil)
+    expect(device_info.save).to be_falsey
   end
 
   it 'should contain user' do
-    user = User.create(email:'joe@joe.com', password:'12345678')
-    device_info =DevicesInfo.create(udid: "xxxx" , user_id: user.id)
+    user = create(:user)
+    device_info = create(:devices_info, user: user)
     expect(device_info.user.id == user.id).to be_truthy
 
   end

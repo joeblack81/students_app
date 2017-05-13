@@ -22,15 +22,12 @@ RSpec.describe Reading, type: :model do
   end
 
   it 'should not create new reading without reading_type_id' do
-    x =  build(:reading, subject: nil)
+    x =  build(:reading, reading_type: nil)
     expect(x.save).to be_falsey
   end
 
   it 'should not create new reading without subject_id' do
-    subj = create(:subject)
-    reading_type = create(:reading_type)
-    reading = create(:reading , subject: subj, reading_type: reading_type )
-    #x =Reading.new(reading_type_id: 1 , header: '1.0', body: '1.0', subject_id: nil)
+    reading = build(:reading , subject: nil )
     expect(reading.save).to be_falsey
   end
 
@@ -44,17 +41,17 @@ RSpec.describe Reading, type: :model do
 
   it 'should contain subject' do
     subj = create(:subject)
-    reading_type = ReadingType.create(name: 'type name' )
-    reading = Reading.create(reading_type_id: reading_type.id , header: '1.0', body: '1.0', subject_id: subj.id)
+    reading_type = create(:reading_type)
+    reading = create(:reading , subject: subj, reading_type: reading_type )
     expect(reading.subject.id == subj.id).to be_truthy
 
   end
 
   it 'should contain reading_type' do
     subj = create(:subject)
-    reading_type = ReadingType.create(name: 'type name' )
-    reading = Reading.create(reading_type_id: reading_type.id , header: '1.0', body: '1.0', subject_id: subj.id)
-    expect(reading.subject.id == subj.id).to be_truthy
+    reading_type = create(:reading_type)
+    reading = create(:reading , subject: subj, reading_type: reading_type )
+    expect(reading.reading_type.id == reading_type.id).to be_truthy
 
   end
 

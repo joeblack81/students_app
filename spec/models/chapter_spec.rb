@@ -22,24 +22,23 @@ RSpec.describe Chapter, type: :model do
   end
 
   it 'should not create new chapter without subject_id' do
-    x =Chapter.new(subject_id: nil, weight: 1, name: 'knowledge area', icon: 'xxxx')
-    expect(x.save).to be_falsey
+    chapter = build(:chapter, subject: nil)
+    expect(chapter.save).to be_falsey
   end
 
   it 'should not create new chapter without weight' do
-    x =Chapter.new(subject_id: 1, weight: nil, name: 'knowledge area', icon: 'xxxx')
-    expect(x.save).to be_falsey
+    chapter = build(:chapter, weight: nil)
+    expect(chapter.save).to be_falsey
   end
 
   it 'should not create new chapter without name' do
-    x =Chapter.new(subject_id: 1, weight: 1, name: nil, icon: 'xxxx')
-    expect(x.save).to be_falsey
+    chapter = build(:chapter, name: nil)
+    expect(chapter.save).to be_falsey
   end
 
   it 'should  create new chapter with all attributes' do
-    subj = create(:subject)
-    x =Chapter.new(subject_id: subj.id, weight: 1, name: 'knowledge area', icon: 'xxxx')
-    expect(x.save).to be_truthy
+    chapter = create(:chapter)
+    expect(chapter.save).to be_truthy
   end
 
   it 'should contain subject' do

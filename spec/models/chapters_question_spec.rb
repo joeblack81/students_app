@@ -19,30 +19,30 @@ RSpec.describe ChaptersQuestion, type: :model do
   end
 
   it 'should not create new chapters_question without chapter_id' do
-    x =ChaptersQuestion.new(chapter_id: nil , question_id: 1, weight: 1)
-    expect(x.save).to be_falsey
+    chapter_question = build(:chapters_question, chapter: nil )
+    expect(chapter_question.save).to be_falsey
   end
 
   it 'should not create new chapters_question without question_id' do
-    x =ChaptersQuestion.new(chapter_id: 1 , question_id: nil, weight: 1)
-    expect(x.save).to be_falsey
+    chapter_question = build(:chapters_question, question: nil )
+    expect(chapter_question.save).to be_falsey
   end
 
   it 'should  create new chapters_question with all attributes ' do
-    question_type = QuestionType.create(name: "question name")
     subj = create(:subject)
-    question = Question.create(header: "test" , possible_answers: {test: "test"}, correct_answer: {test: "test"}, explanation: {test: "test"},question_type_id: question_type.id )
-    chapter =Chapter.create(subject_id: subj.id , weight: 1, name: 'knowledge area', icon: 'xxxx')
-    x =ChaptersQuestion.new(chapter_id: chapter.id , question_id: question.id, weight: 1)
-    expect(x.save).to be_truthy
+    question_type = create(:question_type)
+    question = create(:question, question_type: question_type)
+    chapter = create(:chapter, subject: subj )
+    chapter_question = create(:chapters_question, question: question , chapter: chapter)
+    expect(chapter_question.save).to be_truthy
   end
 
   it 'should contain chapter' do
     subj = create(:subject)
-    question_type = QuestionType.create(name: "question name")
-    question = Question.create(header: "test" , possible_answers: {test: "test"}, correct_answer: {test: "test"}, explanation: {test: "test"},question_type_id: question_type.id )
-    chapter = Chapter.create(subject_id: subj.id , weight: 1, name: 'knowledge area', icon: 'xxxx')
-    chapter_question =ChaptersQuestion.create!(chapter_id: chapter.id , question_id: question.id, weight: 1)
+    question_type = create(:question_type)
+    question = create(:question, question_type: question_type)
+    chapter = create(:chapter, subject: subj )
+    chapter_question = create(:chapters_question, question: question , chapter: chapter)
     expect(chapter.chapters_questions.first.id == chapter_question.id).to be_truthy
 
   end
