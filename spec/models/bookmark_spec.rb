@@ -31,4 +31,19 @@ RSpec.describe Bookmark, type: :model do
 
   end
 
+  it 'should contain bookmarkable reading' do
+    user = create(:user)
+    student = create(:student, user: user)
+    bookmark = create(:bookmark, :bookmark_reading, student: student)
+    expect(bookmark.bookmarkable_type == 'Reading').to be_truthy
+
+  end
+
+  it 'should contain bookmarkable question' do
+    user = create(:user)
+    student = create(:student, user: user)
+    bookmark = create(:bookmark, :bookmark_question, student: student)
+    expect(bookmark.bookmarkable_type == 'Question').to be_truthy
+  end
+
 end
