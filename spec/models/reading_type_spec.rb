@@ -10,12 +10,12 @@ RSpec.describe ReadingType, type: :model do
   end
 
   it 'should not create new QuestionType without name' do
-    x =ReadingType.new(name: nil )
+    x = build(:reading_type, name: nil)
     expect(x.save).to be_falsey
   end
 
   it 'should create new QuestionType with all attrs' do
-    x =ReadingType.new(name: 'type name' )
+    x = build(:reading_type)
     expect(x.save).to be_truthy
 
   end

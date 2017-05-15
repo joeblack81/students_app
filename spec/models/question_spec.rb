@@ -31,12 +31,8 @@ RSpec.describe Question, type: :model do
   end
 
   it 'should create new question with all attributes' do
-
-    question = build(:question )
+    question = build(:question)
     expect(question.save).to be_truthy
-
   end
-
-
 
 end

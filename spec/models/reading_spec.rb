@@ -32,31 +32,22 @@ RSpec.describe Reading, type: :model do
   end
 
   it 'should  create new reading without missing data' do
-    subj = create(:subject)
-    reading_type = create(:reading_type)
-    reading = create(:reading , subject: subj, reading_type: reading_type )
-    expect(reading.save!).to be_truthy
+    reading = build(:reading)
+    expect(reading.save).to be_truthy
   end
 
 
   it 'should contain subject' do
     subj = create(:subject)
-    reading_type = create(:reading_type)
-    reading = create(:reading , subject: subj, reading_type: reading_type )
+    reading = create(:reading , subject: subj )
     expect(reading.subject.id == subj.id).to be_truthy
 
   end
 
   it 'should contain reading_type' do
-    subj = create(:subject)
     reading_type = create(:reading_type)
-    reading = create(:reading , subject: subj, reading_type: reading_type )
+    reading = create(:reading, reading_type: reading_type )
     expect(reading.reading_type.id == reading_type.id).to be_truthy
 
   end
-
-
-
-
 end
-

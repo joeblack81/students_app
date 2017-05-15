@@ -29,20 +29,13 @@ RSpec.describe ChaptersQuestion, type: :model do
   end
 
   it 'should  create new chapters_question with all attributes ' do
-    subj = create(:subject)
-    question_type = create(:question_type)
-    question = create(:question, question_type: question_type)
-    chapter = create(:chapter, subject: subj )
-    chapter_question = create(:chapters_question, question: question , chapter: chapter)
+    chapter_question = build(:chapters_question)
     expect(chapter_question.save).to be_truthy
   end
 
   it 'should contain chapter' do
-    subj = create(:subject)
-    question_type = create(:question_type)
-    question = create(:question, question_type: question_type)
-    chapter = create(:chapter, subject: subj )
-    chapter_question = create(:chapters_question, question: question , chapter: chapter)
+    chapter = create(:chapter)
+    chapter_question = create(:chapters_question, chapter: chapter)
     expect(chapter.chapters_questions.first.id == chapter_question.id).to be_truthy
 
   end

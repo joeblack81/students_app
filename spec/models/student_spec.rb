@@ -24,11 +24,9 @@ RSpec.describe Student, type: :model do
   end
 
   it 'should contain user' do
-    user = create(:user, email:'mohamed@gmail.com')
+    user = create(:user)
     student = create(:student , user: user)
     expect(student.user.id == user.id).to be_truthy
-
-
   end
 
 end

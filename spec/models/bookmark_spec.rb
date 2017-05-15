@@ -24,26 +24,18 @@ RSpec.describe Bookmark, type: :model do
   end
 
   it 'should contain student' do
-    user = create(:user)
-    student = create(:student, user: user)
+    student = create(:student)
     bookmark = create(:bookmark, student: student)
     expect(bookmark.student.id == student.id).to be_truthy
-
   end
 
   it 'should contain bookmarkable reading' do
-    user = create(:user)
-    student = create(:student, user: user)
-    bookmark = create(:bookmark, :bookmark_reading, student: student)
+    bookmark = create(:bookmark, :bookmark_reading)
     expect(bookmark.bookmarkable_type == 'Reading').to be_truthy
-
   end
 
   it 'should contain bookmarkable question' do
-    user = create(:user)
-    student = create(:student, user: user)
-    bookmark = create(:bookmark, :bookmark_question, student: student)
+    bookmark = create(:bookmark, :bookmark_question)
     expect(bookmark.bookmarkable_type == 'Question').to be_truthy
   end
-
 end

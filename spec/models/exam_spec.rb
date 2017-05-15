@@ -36,8 +36,7 @@ RSpec.describe Exam, type: :model do
   end
 
   it 'should contain student' do
-    user = create(:user)
-    student = create(:student , user: user)
+    student = create(:student)
     exam =create(:exam, student: student)
     expect(exam.student.id == student.id).to be_truthy
 

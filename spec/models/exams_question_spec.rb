@@ -42,22 +42,16 @@ RSpec.describe ExamsQuestion, type: :model do
   end
 
   it 'should contain question' do
-    question_type = create(:question_type)
-    question = create(:question, question_type: question_type)
+    question = create(:question)
     exam_question= create(:exams_question, question: question)
     expect(exam_question.question.id == question.id).to be_truthy
 
   end
 
   it 'should contain exams' do
-    question_type = create(:question_type)
-    question = create(:question, question_type: question_type)
-    user = create(:user)
-    student = create(:student, user: user)
-    exam = create(:exam, student: student)
-    exam_question = create(:exams_question, question: question, exam: exam)
+    exam = create(:exam)
+    exam_question = create(:exams_question, exam: exam)
     expect(exam_question.exam.id == exam.id).to be_truthy
-
   end
 
 end
