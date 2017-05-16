@@ -3,12 +3,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   api_version(:module => "Api::V0", :path => {:value => "api/v0"})do
-    # resources :exams, only:[:index, :create, :update]
-    # resources :questions, only:[:index]
-    # resources :reading, only:[:show]
+    resources :exams, only:[:index, :create, :update]
+    resources :questions, only:[:index]
+    resources :readings, only:[:show]
+    resources :application_initiators, only: [:index]
   end
-
-
-
-
 end
