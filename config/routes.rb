@@ -8,4 +8,10 @@ Rails.application.routes.draw do
     resources :readings, only:[:show]
     resources :application_initiators, only: [:index]
   end
+  api_version(:module => "Api::V1", :path => {:value => "api/v1"})do
+    resources :exams, only:[:index, :create, :update]
+    resources :questions, only:[:index]
+    resources :readings, only:[:show]
+    resources :application_initiators, only: [:index]
+  end
 end
