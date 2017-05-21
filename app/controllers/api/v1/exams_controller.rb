@@ -1,4 +1,5 @@
 class Api::V1::ExamsController < Api::V0::ExamsController
+  before_action :authenticate_user!
 
 
   def create
